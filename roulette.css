@@ -1,0 +1,574 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #0f1923;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #263747;
+    padding: 10px 15px; /* Reduce padding slightly */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it's always on top */
+    height: 60px; /* Explicitly set height */
+    box-sizing: border-box;
+}
+
+
+.casino-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white; /* Accent color */
+    text-shadow: 0 0 10px rgba(247, 213, 29, 0.5); /* Glow effect */
+}
+
+.back-btn {
+    background-color: #1482ef; /* Button color */
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #0c66c2; /* Hover effect */
+}
+
+.game-container {
+    max-width: 1200px;
+    width: 100%;
+    background-color: #0f212e;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 55px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #2a3a47;
+}
+
+.balance-container {
+    background-color: #263747;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+@media (min-width: 992px) {
+    .game-area {
+        flex-direction: row;
+    }
+    
+    .wheel-container {
+        flex: 1;
+    }
+    
+    .betting-area {
+        flex: 2;
+    }
+}
+
+/* Wheel Styles */
+.wheel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.wheel-outer {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #263747;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.wheel {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background-color: #1a2c38;
+    overflow: hidden;
+    transition: transform 5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.wheel-center {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.wheel-marker {
+    position: absolute;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    z-index: 2;
+}
+
+.wheel-number {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    transform-origin: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    
+}
+
+.wheel-number span {
+    position: absolute;
+    top: 10px;
+    transform: rotate(180deg);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.result-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.result-number {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.result-color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* Betting Area Styles */
+.betting-area {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bet-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bet-amount {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #263747;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#bet-input {
+    width: 80px;
+    background-color: #1a2c38;
+    border: 1px solid #3a4a57;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.spin-button, .clear-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.spin-button {
+    --tw-bg-opacity: 1;
+    background-color: rgba(0, 231, 1, var(--tw-bg-opacity));
+    color: white;
+}
+
+.spin-button:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgba(31, 255, 32, var(--tw-bg-opacity));
+}
+
+
+.clear-button {
+    background-color: #0f212e;
+    color: white;
+}
+
+.clear-button:hover {
+    background-color: #d32f2f;
+}
+
+.restart-button {
+    background-color: #0f212e;
+    color: white;
+}
+
+.restart-button:hover {
+    background-color: #d32f2f;
+}
+
+
+/* Betting Table Styles */
+.betting-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #213743;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.zero-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    display: inline;
+    float:left;
+}
+
+.al {
+    display: inline;
+    
+}
+.numbers-section {
+    /* display: flex; */
+    /* display: inline;  */
+    flex-direction: column;
+    gap: 3px;
+    float: right;
+    
+}
+
+.number-row {
+    display: flex;
+    gap: 3px;
+    
+}
+
+.number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    margin: 2px;
+}
+
+.number:hover {
+    transform: scale(1.05);
+}
+
+.red {
+    background-color: #FE2247;
+}
+
+.red:hover {
+    background-color: #f2708a;
+}
+
+
+.black {
+    background-color: #2F4553;
+}
+
+.black:hover {
+    background-color: #557086;
+}
+
+
+.green {
+    background-color: #4caf50;
+    height: 128px;
+}
+
+.special-bets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    float: left;
+}
+
+.fir .sec {
+    display: block;
+}
+
+.special-bet1 {
+    float: left;
+    flex: 1;
+    min-width: 100px;
+    padding: 10px;
+    background-color: #0f212e;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding-right: 70px;
+    padding-left: 70px;
+    margin: 2px;
+}
+
+.special-bet {
+    float: left;
+    margin: 2px;
+    flex: 1;
+    min-width: 100px;
+    padding: 10px;
+    background-color: #0f212e;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding-right: 52px;
+    padding-left: 52px;
+}
+
+.special-bet:hover,
+.special-bet1:hover {
+    background-color: #557086;
+}
+
+/* Bet chip styles */
+.bet-chip {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ffc107;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #000;
+    z-index: 1;
+    top: -5px;
+    right: -5px;
+}
+
+/* Bet info styles */
+.bet-info {
+    margin-top: 30px;
+    background-color: #263747;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.active-bets {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.bet-item {
+    background-color: #1a2c38;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bet-target {
+    font-weight: bold;
+}
+
+.bet-amount-display {
+    color: #ffc107;
+}
+
+.no-bets {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* History styles */
+.history {
+    margin-top: 30px;
+    background-color: #263747;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.history-container {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.history-item {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* Animation for winning */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+.winning-number {
+    animation: pulse 1s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .wheel-outer {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .wheel {
+        width: 230px;
+        height: 230px;
+    }
+    
+    .number {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+    
+    .special-bet {
+        min-width: 80px;
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .wheel-outer {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .wheel {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .number {
+        width: 25px;
+        height: 25px;
+        font-size: 10px;
+    }
+}
+
+.ball {
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: none;
+}
+
+
+/* Style for the message container */
+#message-container {
+    position: absolute;
+    top: 76.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 10px;
+    display: none; /* Initially hidden */
+}
+
+/* Style for the "win" message */
+#message-container.win {
+    background-color: green;
+}
+
+/* Style for the "lose" message */
+#message-container.lose {
+    background-color: red;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casino Royale</title>
+    <link rel="stylesheet" href="static/i.css">
+</head>
+<body>
+    <header>
+        <img src="static\WhatsApp Image 2025-04-11 at 09.45.07_bfc2ef9b.jpg" alt="icon">
+        <h1>Casino Royale</h1>  
+        <nav>
+            <a href ="/" class="nav-btn1">Home</a>
+            <a href ="/about" class="nav-btn">About</a>
+            <a href ="/logout" class="nav-btn2">Logout</a>
+            <a href="/signin" class="auth-btn">Sign In</a>
+            <a href="/register" class="auth-btn1">Register</a>
+        </nav>    
+    </header>
+    <div class="sidebar">
+        <div class="box user-info-box">
+            <div class="user-info">
+                
+                <div class="avatar-selection-box">
+                    <img id="current-avatar" src="{{ avatar}}" alt="Current Avatar">
+                    <p id="username-display">{{ username if username else "Player" }}</p>
+                
+                    <form action="/update-avatar" method="POST" id="avatar-form">
+                        <input type="hidden" name="avatar" id="selected-avatar">
+                        <div id="avatar-slider" class="avatar-slider hidden">
+                            <div class="avatar-container">
+                                <label>
+                                    <input type="radio" name="avatar_url" value="static/avatar1.jpg">
+                                    <img src="static/avatar1.jpg" alt="Avatar 1">
+                                </label>
+                                <label>
+                                    <input type="radio" name="avatar" value="static/avatar2.jpg">
+                                    <img src="static/avatar2.jpg" alt="Avatar 2">
+                                </label>
+                                <label>
+                                    <input type="radio" name="avatar" value="static/avatar3.jpg">
+                                    <img src="static/avatar3.jpg" alt="Avatar 3">
+                                </label>
+                                <label>
+                                    <input type="radio" name="avatar" value="static/avatar4.jpg">
+                                    <img src="static/avatar4.jpg" alt="Avatar 4">
+                                </label>
+                                <label>
+                                    <input type="radio" name="avatar" value="static/niks indian.jpg">
+                                    <img src="static/niks indian.jpg" alt="Avatar 5">
+                                </label>
+                                <label>
+                                    <input type="radio" name="avatar" value="static/default-avatar.jpg">
+                                    <img src="static/default-avatar.jpg" alt="Avatar 5">
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <h3>Top Wins</h3>
+                <ul>
+                    <li><p>Roulette : ${{ user_highest_roulette }}</p></li>
+                    <li><p>Reel : ${{ user_highest_reel }}</p></li>
+                    <li><p>Mines : ${{ user_highest_mines }}</p></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="box leaderboard-box">
+            <div class="leaderboard">
+                <h2>Leaderboard</h2>
+                <ul>
+                    {% if not logged_in %}
+                        <!-- Display leaderboard with 0 wins for users not logged in -->
+                        <li> Roulette : Player -> $0</li>
+                        <li> Reel : Player -> $0</li>
+                        <li> Mines : Player -> $0</li>
+                    {% else %}
+                        <!-- Display actual leaderboard data for logged-in users -->
+                        {% if highest_roulette_player %}
+                            <li>Roulette :<strong> {{ highest_roulette_player[0]['username'] }} </strong> - ${{ highest_roulette_player[0]['highest_win_roulette'] }}</li>
+                        {% else %}
+                            <li> Roulette : Player -> $0</li>
+                        {% endif %}
+
+                        {% if highest_reel_player %}
+                            <li>Reel :<strong> {{ highest_reel_player[0]['username'] }} </strong> - ${{ highest_reel_player[0]['highest_win_reel'] }}</li>
+                        {% else %}
+                            <li> Reel : Player -> $0</li>
+                        {% endif %}
+
+                        {% if highest_mines_player %}
+                            <li>Mines : <strong> {{ highest_mines_player[0]['username'] }} </strong>- ${{ highest_mines_player[0]['highest_win_mines'] | round(1) }}</li>
+                        {% else %}
+                            <li> Mines : Player -> $0</li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+   </div>
+     
+    <main id="mainContent">
+        <h2>Casino Originals</h2>
+        <div class="game-container">
+            <div class="game">
+                <h3>Roulette</h3>
+                <img src="static/roulette.jpg" alt="Roulette">
+                <p>Experience the thrill of the spinning wheel in our classic Roulette game.</p>
+                <form action="/roulette" method="POST">
+                <button class="play-btn">Play Now</button>
+            </form>
+            </div>
+            <div class="game">
+                <h3>777 Reels</h3>
+                <img src="static/reels.jpg" alt="777 Reels">
+                <p>Spin the reels and match symbols to win big in our exciting slot machine game.</p>
+                <form action="/rell" method="POST">
+                <button class="play-btn">Play Now</button>
+            </form>
+            </div>
+            <div class="cen">
+            <div class="game">
+                <h3>Mines</h3>
+                <img src="static/mines.jpg" alt="Mines">
+                <p>Test your luck and strategy in this thrilling minefield challenge.</p>
+                <form action="/start_mines" method="POST">
+                <button class="play-btn">Play Now</button>
+            </form>
+            </div>
+            </div>
+            
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Casino Royale. All rights reserved.</p>
+    </footer>
+    
+    <script src="static/i.js"></script>
+</body>
+</html>

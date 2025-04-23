@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play the 777 Slot Machine game. Try your luck and win big!">
+    <meta name="keywords" content="Slot Machine, Game, Casino, Interactive">
+    <meta name="author" content="Your Name">
+    <title>777 Slot Machine</title>
+    <link rel="stylesheet" href="static/r.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <header>
+        <h1 class="casino-title">Casino Royale</h1>
+        <a href="/" class="back-btn">Back</a>
+    </header>
+    
+    <audio id="slotAudio" src="static/slot_machine.mp3" ></audio>
+    <form action="/spin" method="POST">
+    <div class="game-container">
+        <!-- Game Header -->
+        <header class="game-header">
+            <h1 class="game-title">REELS</h1>
+        </header>
+        
+        <!-- Game Body -->
+        <section class="game-body">
+            <div class="slot-machine">
+                <!-- Reels Section -->
+                <div class="reels-container">
+                    <div class="reel" id="reel1">
+                        <div class="reel-strip" id="reelStrip1"></div>
+                    </div>
+                    <div class="reel" id="reel2">
+                        <div class="reel-strip" id="reelStrip2"></div>
+                    </div>
+                    <div class="reel" id="reel3">
+                        <div class="reel-strip" id="reelStrip3"></div>
+                    </div>
+                </div>
+
+                <!-- Controls Section -->
+                <div class="controls">
+                    <div class="bet-controls">
+                        <label for="betAmount" class="bet-label">Bet Amount ($):</label>
+                        <input type="number" id="betAmount" class="bet-input" min="1" max="1000" value="10" aria-label="Enter bet amount">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lever Section -->
+            <div class="lever-container" role="button" aria-label="Game lever">
+                <div class="lever-base"></div>
+                <div class="lever-arm" id="leverArm">
+                    <div class="lever-handle" id="leverHandle" aria-label="Pull the lever"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Info Section -->
+        <section class="game-info">
+            <!-- Chances Display -->
+            <div class="chances">
+                <div class="chance active" id="chance1"></div>
+                <div class="chance active" id="chance2"></div>
+                <div class="chance active" id="chance3"></div>
+            </div>
+
+            <!-- Game Messages -->
+            <div class="message" id="message" aria-live="polite"></div>
+        </form>
+            <!-- Restart Button -->
+            <form action="/rest" method="POST">
+            <button class="restart-btn" id="restart-Btn" aria-label="Restart the game">Restart Game</button>
+            </form>
+        </section>
+    </div>
+
+
+
+<script src="static/tr.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
