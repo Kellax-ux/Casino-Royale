@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Register</title>
+    <link rel="stylesheet" href="static/register.css">
+</head>
+<body >
+    <div class="register-container">
+        <a href="/" class="close-button">×</a>
+        <h2>Create an Account</h2>
+        <p class="subtitle">Enter your details below to create your account</p>
+        <form action="/register" id="RForm" novalidate method="POST">
+           
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" autocomplete="off" autofocus id="email" name="email" placeholder="Enter your email" required>
+                <span class="error-message" id="email-error"></span>
+            </div>
+            
+            
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text"  autocomplete="off" autofocus  id="username" name="username" placeholder="Your username must be 3-9 characters long " required>
+                <span class="error-message" id="username-error"></span>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+          <div class="password-container">
+            <input type="password" autocomplete="off" autofocus id="password" name="password" placeholder="Enter your password" required>
+            <button type="button" id="togglePassword" class="toggle-password">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </button>
+            
+    
+          </div>
+                <span class="error-message" id="password-error"></span>
+            </div>
+
+            <div class="input-group">
+                <label for="dob">Date of Birth</label>
+          <input type="date" autocomplete="off" autofocus  id="dob" name="dob">
+          <span class="error-message" id="dob-error"></span>
+            </div>
+            
+            
+            
+            <button type="submit" id="register_btn">Register</button>
+        </form>
+        <p class="login-link">Already have an account? <a href="signin">Sign in</a></p>
+    </div>
+    <script src="static/register.js"></script>
+</body>
+</html>

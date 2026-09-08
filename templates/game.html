@@ -1,0 +1,33 @@
+
+{% extends "layout.html" %}
+
+{% block body %}
+<center><h1>DATABASE</h1>
+<table border="10px">
+    <thead>
+       <tr> 
+        <th> email</th>
+        <th> username</th>
+        <th> password</th>
+        <th> dob</th>
+        <th> Roulette</th>
+        <th> Reel</th>
+        <th> Mines</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for game in game %}
+        <tr>
+            <td>{{game.email}}</td>
+            <td>{{game.username}}</td>
+            <td>{{game.password}}</td>
+            <td>{{game.dob}}</td>
+            <td>{{game.highest_win_roulette}}</td>
+            <td>{{game.highest_win_reel}}</td>
+            <td>{{game.highest_win_mines}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+ </table>
+</center>
+{% endblock %}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roulette Game</title>
+    <link rel="stylesheet" href="static/roulette.css">
+</head>
+<body>
+    <header>
+        <h1 class="casino-title">Casino Royale</h1>
+        <a href="/" class="back-btn">Back</a>
+    </header>
+    <div class="game-container">
+        <div class="header">
+            <h1>Roulette</h1>
+            <div class="balance-container">
+                <span>Balance: $</span>
+                <span id="balance">1000</span>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div class="wheel-container">
+                <div class="wheel-outer">
+                    <div class="wheel" id="wheel">
+                        <!-- Numbers will be added by JavaScript -->
+                    </div>
+                    <div class="wheel-center"></div>
+                    <!-- <div class="wheel-marker"></div> -->
+                    <div class = "ball" id = "ball"></div>
+                </div>
+                <div class="result-display">
+                    <div id="result-number" class="result-number">-</div>
+                    <div id="result-color" class="result-color"></div>
+                </div>
+            </div>
+
+            <div class="betting-area">
+                <div class="bet-controls">
+                    <div class="bet-amount">
+                        <span>Bet Amount: $</span>
+                        <input type="number" id="bet-input" min="1" max="100" value="10">
+                    </div>
+                    <audio id="spinAudio" src="static\roulette.mp3" ></audio>
+                    <button id="spin-button" class="spin-button" onclick="document.getElementById('spinAudio').play()">SPIN</button>
+                    <button id="clear-bets" class="clear-button">CLEAR BETS</button>
+                    <button id="restart-button" class="clear-button">RESTART</button> 
+                    
+                </div>
+
+                <div class="betting-table">
+                   
+                    <div class="numbers-section">
+                        <div class="zero-section">
+                            <div class="number green" data-number="0">0</div>
+                        </div>
+                        <!-- First row (1-36) -->
+                         <div class="in">
+                        <div class="number-row">
+                            <div class="number red" data-number="1">1</div>
+                            <div class="number black" data-number="2">2</div>
+                            <div class="number red" data-number="3">3</div>
+                            <div class="number black" data-number="4">4</div>
+                            <div class="number red" data-number="5">5</div>
+                            <div class="number black" data-number="6">6</div>
+                            <div class="number red" data-number="7">7</div>
+                            <div class="number black" data-number="8">8</div>
+                            <div class="number red" data-number="9">9</div>
+                            <div class="number black" data-number="10">10</div>
+                            <div class="number black" data-number="11">11</div>
+                            <div class="number red" data-number="12">12</div>
+                        </div>
+                        <div class="number-row">
+                            <div class="number black" data-number="13">13</div>
+                            <div class="number red" data-number="14">14</div>
+                            <div class="number black" data-number="15">15</div>
+                            <div class="number red" data-number="16">16</div>
+                            <div class="number black" data-number="17">17</div>
+                            <div class="number red" data-number="18">18</div>
+                            <div class="number red" data-number="19">19</div>
+                            <div class="number black" data-number="20">20</div>
+                            <div class="number red" data-number="21">21</div>
+                            <div class="number black" data-number="22">22</div>
+                            <div class="number red" data-number="23">23</div>
+                            <div class="number black" data-number="24">24</div>
+                        </div>
+                        <div class="number-row">
+                            <div class="number red" data-number="25">25</div>
+                            <div class="number black" data-number="26">26</div>
+                            <div class="number red" data-number="27">27</div>
+                            <div class="number black" data-number="28">28</div>
+                            <div class="number black" data-number="29">29</div>
+                            <div class="number red" data-number="30">30</div>
+                            <div class="number black" data-number="31">31</div>
+                            <div class="number red" data-number="32">32</div>
+                            <div class="number black" data-number="33">33</div>
+                            <div class="number red" data-number="34">34</div>
+                            <div class="number black" data-number="35">35</div>
+                            <div class="number red" data-number="36">36</div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="special-bets">
+
+                        <div class="fir">
+                        <div class="special-bet1" data-bet="1-12">1 to 12</div>
+                        <div class="special-bet1" data-bet="13-24">13 to 24</div>
+                        <div class="special-bet1" data-bet="25-36">25 to 36</div>
+                        </div>
+
+                        <div class="sec">
+                        <div class="special-bet" data-bet="red">RED</div>
+                        <div class="special-bet" data-bet="black">BLACK</div>
+                        <div class="special-bet" data-bet="odd">ODD</div>
+                        <div class="special-bet" data-bet="even">EVEN</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bet-info">
+            <h3>Your Bets</h3>
+            <div id="active-bets" class="active-bets">
+                <div class="no-bets">No active bets</div>
+            </div>
+        </div>
+        <div class = "history">
+            <h3>History</h3>
+            <div id="history-container" class="history-container">
+
+            </div>
+        </div>
+        
+    </div>
+    <div id="message-container"></div>
+
+    <script src="static/roulette.js"></script>
+</body>
+</html>

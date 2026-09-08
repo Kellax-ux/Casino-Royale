@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mines Game</title>
+    <link rel="stylesheet" href="static/m.css">
+</head>
+<body>
+    <div class="he">
+        <h1 class="casino-title">Casino Royale</h1>
+        <a href="/" class="back-btn">Back</a>
+    </div>
+    <div class="container">
+        <header>
+            <h2>Mines</h2>
+            <div class="balance">Balance: $<span id="balanceAmount">1000.00</span></div>
+        </header>
+        <main>
+            <div class="game-controls">
+                <div class="left-panel">                   
+                    <div class="bet-controls">
+                        <label for="betAmount">Bet Amount:</label>
+                        <audio id="bombAudio" src="static\bomb.mp3"></audio>
+                        <audio id="diamondAudio" src="static\diamond.mp3"></audio>
+                       
+                        
+                    </div>
+                    <input type="number" id="betAmount" min="1" max="1000" value="10">
+                    <div class="mines-controls">
+                        <label for="minesCount">Mines:</label>
+                       
+                        
+                    </div>
+                    <input type="number" id="minesCount" min="1" max="24" value="5">
+                    <button id="startGameBtn">Start Game</button>
+                    <button id="cashoutBtn" disabled>Cashout</button>
+                    <button id="restartBtn">Restart</button>
+                    <div id="currentProfit"> </div>
+                    <div id="errorMessage" class="error-message"></div>
+                </div>
+                <div class="game-board">
+                    <div id="minesGrid" class="mines-grid"></div>
+                </div>
+            </div>
+            <div class="game-info">
+                <div id="nextPayout">Next payout: 1.00x</div>
+                <div id="totalPayout">Total payout: 1.00x</div>
+            </div>
+            <div id="message"></div>
+        </main>
+    </div>
+    <script src="static/m.js"></script>
+</body>
+</html>
