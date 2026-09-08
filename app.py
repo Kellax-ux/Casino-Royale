@@ -2,10 +2,12 @@ from cs50 import SQL
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 import random
+import os
 
 app = Flask(__name__)
 
-db = SQL("sqlite:///database/he.db")
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+db = SQL("sqlite:///data/he.db")
 
 app.config["SESSION_PERMANENT"]= False
 app.config["SESSION_TYPE"]= "filesystem"
@@ -258,5 +260,5 @@ def reset_game():
         return redirect("/rell") # Respond with a 200 OK status
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
 
