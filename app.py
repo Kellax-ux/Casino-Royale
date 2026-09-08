@@ -7,7 +7,20 @@ import os
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-db = SQL("sqlite:////data/he.db")
+db = SQL("sqlite:///he.db")
+db.execute("""
+    CREATE TABLE IF NOT EXISTS game (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email TEXT UNIQUE NOT NULL,
+        username TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL,
+        dob TEXT NOT NULL,
+        avatar TEXT DEFAULT 'static/default-avatar.jpg',
+        highest_win_roulette INTEGER DEFAULT 0,
+        highest_win_reel INTEGER DEFAULT 0,
+        highest_win_mines REAL DEFAULT 0
+    )
+""")
 
 app.config["SESSION_PERMANENT"]= False
 app.config["SESSION_TYPE"]= "filesystem"
