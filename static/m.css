@@ -1,0 +1,280 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+:root {
+  --primary-bg: #0f1923;
+  --secondary-bg: #1a2c38;
+  --accent-color: #00ff9d;
+  --text-color: #ffffff;
+  --button-bg: #233b4e;
+  --mine-color: #e74c3c;
+  --gem-color: #3498db;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+
+}
+
+.he {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #263747;
+  padding: 10px 15px; /* Reduce padding slightly */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it's always on top */
+  height: 60px; /* Explicitly set height */
+  box-sizing: border-box;
+}
+
+.casino-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ff9d; /* Accent color */
+  text-shadow: 0 0 10px rgba(0, 255, 517, 0.5); /* Glow effect */
+}
+
+.back-btn {
+  background-color: #1482ef; /* Button color */
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 57px;
+}
+
+h2 {
+  color: var(--accent-color);
+  font-size: 30px;
+}
+
+.balance {
+  background-color: var(--secondary-bg);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  height: 616px;
+  
+}
+
+.left-panel {
+  width: 200px;  /* Smaller left panel */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-shrink: 0;
+  padding: 20px;
+  background-color: var(--secondary-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.left-panel .bet-controls,
+.left-panel .mines-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.left-panel input[type="number"] {
+  width: 160px;
+  padding: 5px;
+  font-size: 16px;
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 3px;
+  clear: both;
+}
+
+button {
+  background-color: var(--accent-color);
+  color: var(--primary-bg);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 3px;
+}
+
+button:hover {
+  background-color: #00cc7d;
+}
+
+button:disabled {
+  background-color: var(--button-bg);
+  cursor: not-allowed;
+}
+
+#currentProfit {
+  margin-top: 10px;
+  font-weight: bold;
+  color: var(--accent-color);
+  background-color: var(--secondary-bg);
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+
+
+.mines-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;  /* Smaller gap between cells */
+  width: 100%;
+  height: 100%;
+  max-width: 600px;  /* Adjusted grid size */
+  max-height: 600px;
+  margin: 0 auto;
+  pointer-events: none; /* Disable interaction before the game Games */
+}
+
+.cell {
+  aspect-ratio: 1;
+  background-color: var(--secondary-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;  /* Smaller font size for icons */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  border-radius: 5px;
+}
+
+.cell:hover {
+  background-color: var(--button-bg);
+  transform: scale(1.05);
+}
+
+.cell.revealed {
+  cursor: default;
+}
+
+.cell.gem {
+  background-color: var(--gem-color);
+}
+
+.cell.mine {
+  background-color: var(--mine-color);
+}
+
+/* Center the grid and make it non-interactive until the game starts */
+.mines-grid {
+  pointer-events: none; /* Disable interaction before the game starts */
+}
+
+.game-board .cell {
+  pointer-events: none; /* Disable interaction before the game starts */
+}
+
+.game-board.active .cell {
+  pointer-events: all; /* Enable interaction after the game starts */
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.game-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  position: relative; /* This ensures that the message is positioned relative to the board */
+  margin-top: 20px;
+}
+
+#message {
+  position: absolute;  /* Position it absolutely over the board */
+  top: 50%;  /* Vertically center the message */
+  left: 57%;  /* Horizontally center the message */
+  transform: translate(-50%, -50%);  /* Offset by half its width and height to center it */
+  background-color: rgba(15, 25, 35, 0.7); /* Dark background with transparency */
+  color: var(--accent-color);  /* Set text color */
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 10; /* Ensure the message appears above other elements */
+  display: none; /* Initially hidden */
+}
+
+
+button:active {
+  transform: scale(0.98);
+}
+
+.left-panel .bet-controls,
+.left-panel .mines-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#nextPayout,
+#totalPayout {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+  padding: 10px;
+  background-color: var(--secondary-bg);
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+#nextPayout {
+  color: var(--accent-color);
+}
+
+#totalPayout {
+  color: #f39c12;
+}
