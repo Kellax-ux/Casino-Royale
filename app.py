@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-db = SQL("sqlite:///he.db")
+db = SQL("sqlite:///./he.db")
 db.execute("""
     CREATE TABLE IF NOT EXISTS game (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
