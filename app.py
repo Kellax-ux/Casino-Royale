@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-db = SQL("sqlite:///data/he.db")
+db = SQL("sqlite:////data/he.db")
 
 app.config["SESSION_PERMANENT"]= False
 app.config["SESSION_TYPE"]= "filesystem"
